@@ -7,11 +7,12 @@ translation = libMediathek.getTranslation
 
 
 def main():
-	menu = [{'name': translation(31034), 'mode': 'listRubriken', '_type': 'dir'},
+	menu = [{'name': translation(31034), 'mode': 'listRubrics', '_type': 'dir'},
 			{'name': 'Dossiers', 'mode': 'listDossiers', '_type': 'dir'},
-			{'name': 'Sendungen', 'mode': 'listSendungen', '_type': 'dir'}]
+			{'name': 'Sendungen', 'mode': 'listShows', '_type': 'dir'}]
 	return menu
-	
+
+
 def listVideos():
 	return jsonParser.parseVideos(params['id'])
 
@@ -44,9 +45,9 @@ modes = {
 	'main': main,
 	'listVideos': listVideos,
 	'play': play,
-	'listRubriken': listRubrics,
+	'listRubrics': listRubrics,
 	'listDossiers': listDossiers,
-	'listSendungen': listShows,
+	'listShows': listShows,
 	'search': search,
 	'listSearch': listSearch
 }	
@@ -56,7 +57,7 @@ def list():
 	global params
 	params = libMediathek.get_params()
 	
-	mode = params.get('mode','main')
+	mode = params.get('mode', 'main')
 	if mode == 'play':
 		libMediathek.play(play())
 	else:

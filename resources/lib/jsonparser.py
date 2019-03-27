@@ -23,21 +23,21 @@ def parseMain():
 	return l
 
 
-def parseRubriken():
+def parseRubrics():
 	response = libMediathek.getUrl(base + 'rubrik_overview_json')
 	j = json.loads(response)
 	l = __parse_items(j)
-	return j
+	return l
 
 
 def parseDossiers():
 	response = libMediathek.getUrl(base + 'dossier_overview_json')
 	j = json.loads(response)
 	l = __parse_items(j)
-	return j
+	return l
 
 
-def parseSendungen():
+def parseShows():
 	response = libMediathek.getUrl(base + 'sendungseite_overview_json')
 	j = json.loads(response)
 	l = __parse_items(j)
@@ -79,13 +79,13 @@ def getVideoUrl(smubl):
 					url = quality['audio']['tracks'][0]['uri']
 	d = {}
 	d['media'] = []
-	d['media'].append({'url':url, 'type': 'video', 'stream':'HLS'})
+	d['media'].append({'url': url, 'type': 'video', 'stream': 'HLS'})
 	return d
 
 
 def __parse_items(j):
 	l = []
-	for item in j['content']['item']:
+	for item in j['content']['items']:
 		d = {}
 		d['_name'] = item['titel']
 		d['_plot'] = item['typ']
