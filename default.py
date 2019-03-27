@@ -2,23 +2,57 @@
 import libmediathek3 as libMediathek
 import resources.lib.jsonparser as jsonParser
 
+
+translation = libMediathek.getTranslation
+
+
 def main():
-	return jsonParser.parseMain()
+	menu = [{'name': translation(31034), 'mode': 'listRubriken', '_type': 'dir'},
+			{'name': 'Dossiers', 'mode': 'listDossiers', '_type': 'dir'},
+			{'name': 'Sendungen', 'mode': 'listSendungen', '_type': 'dir'}]
+	return menu
 	
 def listVideos():
 	return jsonParser.parseVideos(params['id'])
+
+
+def listRubrics():
+	return jsonParser.parseRubrics()
+
+
+def listDossiers():
+	return jsonParser.parseDossiers()
+
+
+def listShows():
+	return jsonParser.parseShows()
+
+
+def search(term):
+	pass
+
+
+def listSearch():
+	pass
+
 	
 def play():
 	return jsonParser.getVideoUrl(params['smubl'])
 
 
 modes = {
-'main': main,
-'listVideos': listVideos,
-'play': play
+	'main': main,
+	'listVideos': listVideos,
+	'play': play,
+	'listRubriken': listRubrics,
+	'listDossiers': listDossiers,
+	'listSendungen': listShows,
+	'search': search,
+	'listSearch': listSearch
 }	
 
-def list():	
+
+def list():
 	global params
 	params = libMediathek.get_params()
 	
